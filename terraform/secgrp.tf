@@ -36,3 +36,36 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv6_alb" {
   ip_protocol       = "-1"
 }
 
+
+
+resource "aws_security_group" "svc_sg" {
+  name        = "svc_sg"
+  description = "Security group for Service"
+  vpc_id      = module.vpc.vpc_id
+
+  tags = {
+    project = "intens-project"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_8080_from_alb" {
+  security_group_id            = aws_security_group.svc_sg.id
+  referenced_security_group_id = aws_security_group.alb_sg.id
+  from_port                    = 8080
+  ip_protocol                  = "tcp"
+  to_port                      = 8080
+}
+
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4_svc" {
+  security_group_id = aws_security_group.svc_sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1"
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv6_svc" {
+  security_group_id = aws_security_group.svc_sg.id
+  cidr_ipv6         = "::/0"
+  ip_protocol       = "-1"
+}
+
