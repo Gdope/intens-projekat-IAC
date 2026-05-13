@@ -45,3 +45,23 @@ variable "ecr_name" {
 variable "ecs_name" {
   default = "intens-api-ecs"
 }
+
+variable "taskdef_family_name" {
+  default = "intens-api-taskdef"
+}
+
+variable "container_name" {
+  default = "intens-api-container"
+}
+
+variable "ecs_task_execution_role" {
+  default = "intens-api-ecs-task-execution-role"
+}
+
+variable "alb_name" {
+  default = "stefan-intens-alb"
+}
+
+variable "svc_name" {
+  default = "intens-app-svc"
+}
