@@ -41,3 +41,7 @@ variable "pub_sub3" {
 variable "ecr_name" {
   default = "intens-api"
 }
+
+variable "ecs_name" {
+  default = "intens-api-ecs"
+}
