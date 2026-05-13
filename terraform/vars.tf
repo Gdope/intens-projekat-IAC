@@ -37,3 +37,7 @@ variable "pub_sub2" {
 variable "pub_sub3" {
   default = "172.20.12.0/24"
 }
+
+variable "ecr_name" {
+  default = "intens-api"
+}
